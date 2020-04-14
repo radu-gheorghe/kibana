@@ -4,7 +4,15 @@
  * you may not use this file except in compliance with the Elastic License.
  */
 
-const alwaysImportedTests = [require.resolve('../test/functional/config.js')];
+const functionalEndpointTests = [
+  require.resolve('../test/functional_endpoint_ingest_failure/config.ts'),
+  require.resolve('../test/functional_endpoint/config.ts'),
+];
+const alwaysImportedTests = [
+  require.resolve('../test/functional/config.js'),
+  ...functionalEndpointTests,
+];
+
 const onlyNotInCoverageTests = [
   require.resolve('../test/reporting/configs/chromium_api.js'),
   require.resolve('../test/reporting/configs/chromium_functional.js'),
@@ -43,8 +51,6 @@ const onlyNotInCoverageTests = [
   require.resolve('../test/licensing_plugin/config.ts'),
   require.resolve('../test/licensing_plugin/config.public.ts'),
   require.resolve('../test/licensing_plugin/config.legacy.ts'),
-  // require.resolve('../test/functional_endpoint_ingest_failure/config.ts'),
-  // require.resolve('../test/functional_endpoint/config.ts'),
 ];
 
 require('@kbn/plugin-helpers').babelRegister();
